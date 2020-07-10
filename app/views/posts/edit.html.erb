@@ -1,8 +1,78 @@
-<h1>hello</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Acebook</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <style>
+      .custom-width {
+        width: 600px;
+      }
+      .form-control {
+        border-radius: 13px;
+      }
+      .post-rounded {
+        border-radius: 13px;
+        background-color: #ebeef0;
+      }
+      .comment-rounded {
+        border-radius: 40px;
+      }
+      .custom {
+        border-radius: 40px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark fixed-top">
+      <div class="container custom-width">
+        
+        <!-- brand -->
+        <a class="navbar-brand" href="/posts">Acebook</a>
 
-  <%= form_for @post do |form| %>
-    <%= form.label :message %>
-    <%= form.text_area :message %>
+        <!-- collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+     
+        <!-- links -->
+        <div class="collapse navbar-collapse order-2 flex-row-reverse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <%= link_to("Posts", posts_path, class: "nav-item nav-link") %> 
+            <%= link_to("My Profile", profile_index_path(:id => current_user.id), class: "nav-item nav-link") %> 
+            <%= link_to("Log out", session_path(:id => current_user.id), :method => :delete, class: "nav-item nav-link") %>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-    <%= form.submit "Submit" %>
-<% end %>
+    <div class="container pt-4 custom-width">
+      <!-- Additional Whitespace -->
+      <div class="col-xs-12" style="height:60px;"></div>
+
+      <div class="row">
+        <div class="col-lg">
+          <!-- Notice -->
+          <p class="text-success" id="notice"><%= notice %></p>
+
+          <!-- Title -->
+          <h2 class="mt-4"> Edit Post </h2>
+
+          <!-- Edit Form -->
+          <%= form_for @post do |form| %>
+            <%= form.label(:message, style: 'display:none')%>
+            <%= form.text_area(:message, class: 'form-control mb-2', style: 'height: 100px; resize:none' ) %>
+
+            <!-- Submit Button -->
+            <%= form.submit "Submit", :class => 'btn btn-primary custom' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

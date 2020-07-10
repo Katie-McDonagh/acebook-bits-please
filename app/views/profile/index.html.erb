@@ -1,35 +1,142 @@
-<h1><%= @user.firstname %>'s Profile Page</h1>
-<% if @photo %>
-  <%= image_tag(rails_blob_path(@photo), size: '200x200') %>
-<% else %>
-  <%= image_tag("default-profile-picture.png", size: '200x200') %>
-<% end %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Acebook</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <style>
+      .custom-width {
+        width: 1000px;
+      }
+      .border {
+        border-width:3px !important;
+      }
+      .post-rounded {
+        border-radius: 13px;
+        background-color: #ebeef0;
+      }
+      .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark fixed-top">
+      <div class="container custom-width">
+        
+        <!-- brand -->
+        <a class="navbar-brand" href="/posts">Acebook</a>
 
-<br>
-<%= link_to "Add Photo Album", new_user_album_path(@user.id) %>
-<br>
-<%= link_to "Back to posts", posts_path %>
-<br>
-<br>
+        <!-- collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+     
+        <!-- links -->
+        <div class="collapse navbar-collapse order-2 flex-row-reverse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <%= link_to("Posts", posts_path, class: "nav-item nav-link") %> 
+            <%= link_to("My Profile", profile_index_path(:id => current_user.id), class: "nav-item nav-link") %> 
+            <%= link_to("Log out", session_path(:id => current_user.id), :method => :delete, class: "nav-item nav-link") %>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-<table>
-  <tbody>
-    <% @albums.each do |album| %>
-      <tr>
-        <% if album.user_id == @user.id %>
-        <td><%= album.title %></td>
-        <td><%= link_to 'View Album', user_album_url(@user.id, album.id) %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="container pt-4 custom-width">
+      <!-- Additional Whitespace -->
+      <div class="col-xs-12" style="height:60px;"></div>
 
-<br>
+      <div class="row">
+        
+        <div class="col-lg-4 mx-0 px-3">
+          <div class="row mx-0">
+            <div class="post-rounded my-2" style="width:300px">
+              <div class="py-2">
+                <!-- Profile Photo -->
+                <% if @photo %>
+                  <%= image_tag(rails_blob_path(@photo), size: '260x260', class: "my-1 center border border-dark rounded-circle") %>
+                <% else %>
+                  <%= image_tag("default-profile-picture.png", size: '260x260', class: "my-1 center border border-dark rounded-circle") %>
+                <% end %>
+
+                <!-- Name -->
+                <h4 class="text-center pt-2 mb-2"><%= @user.firstname %> <%= @user.lastname %></h4>
+              </div>
+            </div>   
+          </div>
+
+          <div class="row mx-0">
+            <div class="post-rounded my-2 px-2" style="min-height: 30px; width:300px">
+              <!-- Add Photo Album -->
+              <% if current_user.id == @user.id %>
+                <div class="py-2">
+                  <%= link_to "Add Photo Album", new_user_album_path(@user.id) %>
+                </div>
+              <% end %>
+              <table class="my-2" style="width:100%">
+                <tbody>
+                  <% @albums.each do |album| %>
+                    <tr>
+                      <% if album.user_id == @user.id %>
+                      <td><%= album.title %></td>
+                      <td style="text-align:right"><%= link_to 'View Album', user_album_url(@user.id, album.id) %></td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>   
+          </div>
+        </div>
+
+        <div class="col-lg-8 pl-0">   
+          <!-- Posts -->      
+          <% @posts.reverse.each do |post| %>          
+            <% if post.user_id == @user.id %>
+              <div class="row mx-0 mt-1">
+
+                <!-- Poster Name -->  
+                <%= link_to "#{User.find(post.user_id).firstname.capitalize()}", profile_index_path(:id => User.find(post.user_id)), class: "mb-0 pb-0", style:"font-size: 19px;" %>
+                <span class="mb-0 pb-0 ml-1" style="font-size: 19px;">made a post</span>           
+                <div class="post-rounded my-2 px-2 " style="min-height: 10px; width:700px">
+
+                  <!-- Post Message -->  
+                  <p class="pt-1 text-dark mb-1"><%= post.message %></p>
+
+                  <!-- Edit/Delete Post -->  
+                  <% if post.user_id == current_user.id %>
+                    <% if post.editable? %>
+                      <%= link_to "Edit", edit_post_path(post), id: 'edit', style: "font-size: 14px;", class: "text-secondary" %> · 
+                    <% end %>
+                    <%= link_to "Delete", destroy_post_path(:id => post.id), :method => :delete, style: "font-size: 14px;", class: "text-secondary"%>
+                  <% end %>           
+                </div>
+              </div>
+            <% end %>           
+          <% end %>    
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
 
 
-<% @posts.each do |post| %>
-  <% if post.user_id == @user.id %>
-    <p><%= post.message %></p><br>
-  <% end %>
-<% end %>
+
+
+
+
+
+
+
+
+
+
+
+

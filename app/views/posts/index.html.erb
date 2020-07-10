@@ -1,42 +1,151 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<p id="notice"><%= notice %></p>
-<h3> Hello, <%= current_user.firstname %>. (<%= link_to "Log out", session_path(:id => current_user.id), :method => :delete %>)</h3> 
-<%= link_to "Profile", profile_index_path(:id => current_user.id) %>
-<%= form_for @post do |form| %>
-  <%= form.label :message%>
-  <%= form.text_area :message, placeholder: "What are your thoughts?" %>
-  <%= form.hidden_field :user_id, :value => current_user.id %>
-  <%= form.submit "Submit" %>
-<% end %>
-<% @posts.reverse.each do |post| %>
-  <!-- name of poster -->
-  <p><%= link_to "#{User.find(post.user_id).firstname}", profile_index_path(:id => User.find(post.user_id)) %></p>
-  <!-- post message -->
-  <p><%= post.message %></p>
-    <% if post.user_id == current_user.id %>
-        <% if post.editable? %>
-          <%= link_to "Edit", edit_post_path(post), id: 'edit' %>
-        <% end %>
-        <%= link_to "Delete", destroy_post_path(:id => post.id), :method => :delete %>
-    <% end %>
-  <!-- post updated time -->
-  <p> <%= post.updated_at.in_time_zone("London") %> </p>
-  <!-- comments -->
-  <% post.comments.each do |comment| %>
-    <!-- name of commenter -->
-    <div id="singlecomment">
-    <p><%= User.find(comment.user_id).firstname %></p>
-    <p><%= comment.body %></p>
-    <% if comment.user_id == current_user.id %>
-      <% if comment.editable? %>
-        <%= link_to "Edit", edit_post_comment_path(:id => comment.id, :post_id => post.id) %>
-      <% end %>
-      <%= link_to "Delete", post_destroy_comment_path(:id => comment.id, :post_id => post.id), :method => :delete %> 
-    <% end %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Acebook</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <style>
+      .custom-width {
+        width: 600px;
+      }
+      .form-control {
+        border-radius: 13px;
+      }
+      .post-rounded {
+        border-radius: 13px;
+        background-color: #ebeef0;
+      }
+      .comment-rounded {
+        border-radius: 40px;
+      }
+      .custom {
+        border-radius: 40px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark fixed-top">
+      <div class="container custom-width">
+        
+        <!-- brand -->
+        <a class="navbar-brand" href="/posts">Acebook</a>
+
+        <!-- collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+     
+        <!-- links -->
+        <div class="collapse navbar-collapse order-2 flex-row-reverse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <%= link_to("Posts", posts_path, class: "nav-item nav-link") %> 
+            <%= link_to("My Profile", profile_index_path(:id => current_user.id), class: "nav-item nav-link") %> 
+            <%= link_to("Log out", session_path(:id => current_user.id), :method => :delete, class: "nav-item nav-link") %>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container pt-4 custom-width">
+      <!-- Additional Whitespace -->
+      <div class="col-xs-12" style="height:60px;"></div>
+
+      <div class="row">
+        <div class="col-lg">
+          <!-- Notice -->
+          <p class="text-success" id="notice"><%= notice %></p>
+
+          <!-- Greeting -->
+          <h2 class="mt-4"> Hello, <%= current_user.firstname.capitalize() %>.</h2>
+
+          <!-- Post Form -->
+          <%= form_for(@post, :html => {:class => 'form-group'}) do |form| %>
+            <%= form.label(:message, style: 'display:none')%>
+            <%= form.text_area(:message, class: 'form-control mb-2', placeholder: "What's on your mind?", style: 'height: 100px; resize:none' ) %>
+            <%= form.hidden_field :user_id, :value => current_user.id %>
+
+            <!-- Submit Button -->
+            <%= form.submit "Submit", :class => 'btn btn-primary custom' %>
+          <% end %> 
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg">
+          <!-- Posts -->
+          <% @posts.reverse.each do |post| %>
+
+            <!-- Poster Name -->
+            <%= link_to "#{User.find(post.user_id).firstname.capitalize()} #{User.find(post.user_id).lastname.capitalize()}", profile_index_path(:id => User.find(post.user_id)), class: "mb-0 pb-0", style:"font-size: 19px;" %>
+
+            <!-- Updated Time -->
+            <p class="text-secondary mb-1" style="font-size: 14px; margin-top: -5px"> <%= post.updated_at.in_time_zone("London").strftime("%-d %b at %H:%M") %> </p>
+       
+            <div class="bg-light post-rounded mb-3" style="min-height: 20px;">
+              <!-- Post Message -->
+              <p class="px-2 pt-1 text-dark mb-0" style="font-size: 18px;"><%= post.message %></p>
+
+              <!-- Edit/Delete Post -->
+              <div class="px-2">
+                <% if post.user_id == current_user.id %>
+                    <% if post.editable? %>
+                      <%= link_to "Edit", edit_post_path(post), id: 'edit', style: "font-size: 14px;", class: "text-secondary" %> · 
+                    <% end %>
+                    <%= link_to "Delete", destroy_post_path(:id => post.id), :method => :delete, style: "font-size: 14px;", class: "text-secondary"%>
+                <% end %>
+
+                <!-- Comments -->                
+                <% post.comments.each do |comment| %>
+                  <div class="post-rounded my-2 px-2 " style="min-height: 30px;">
+                    <div id="singlecomment">
+
+                      <!-- Name -->
+                      <%= link_to "#{User.find(comment.user_id).firstname.capitalize()} #{User.find(comment.user_id).lastname.capitalize()}", profile_index_path(:id => User.find(comment.user_id)), class: "text-dark p-0 m-0", style: "font-size: 15px; font-weight: bold;"%>
+
+                      <!-- Body -->
+                      <p class="mb-0 pb-1" style="font-size: 15px; margin-top: -3px"><%= comment.body %></p>
+
+                      <!-- Edit/Delete Comment -->
+                      <% if comment.user_id == current_user.id %>
+                        <% if comment.editable? %>
+                          <%= link_to "Edit", edit_post_comment_path(:id => comment.id, :post_id => post.id), style: "font-size: 14px", class: "text-secondary" %> · 
+                        <% end %>
+                        <%= link_to "Delete", post_destroy_comment_path(:id => comment.id, :post_id => post.id), :method => :delete, style: "font-size: 14px", class: "text-secondary" %> 
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %> 
+
+                <!-- Comments Form -->
+                <div class="pb-2">
+                  <%= form_for([post, post.comments.build], :html => {:class => 'form-inline'}) do |form| %>
+                    <%= form.text_area(:body, class: 'form-control my-1 comment-rounded mr-1', placeholder: "Add a comment", style: 'font-size: 14px; height: 35px; width: 450px; resize:none') %> 
+                    <%= form.submit "Comment", :class => 'btn btn-outline-primary custom', style: 'font-size: 14px; height: 35px; resize:none;' %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %> 
-  <%= form_for([post, post.comments.build]) do |form| %>
-    <p><%= form.text_area :body, placeholder: "Add comment" %></p>
-    <p><%= form.submit "Comment" %></p>
-  <% end %>
-<% end %>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

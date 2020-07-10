@@ -31,6 +31,6 @@ RSpec.feature "Logging in", type: :feature do
     fill_in "email", with: "test@gmail.com"
     fill_in "password", with: "123456"
     click_button "Login"
-    expect(page).to have_content("Hello, testfirstname.")
+    expect(page).to have_content("Hello, Testfirstname.")
   end
 end

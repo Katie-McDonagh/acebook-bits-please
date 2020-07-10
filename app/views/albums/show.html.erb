@@ -1,22 +1,77 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Acebook</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <style>
+      .custom-width {
+        width: 1000px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark fixed-top">
+      <div class="container custom-width">
+        
+        <!-- brand -->
+        <a class="navbar-brand" href="/posts">Acebook</a>
 
-<p>
-  <strong>Title:</strong>
-  <%= @album.title %>
-</p>
- 
-<% i = 0 %>
-<% @results.each do |result| %>
-  <%= image_tag(@album.thumbnail(i)) %>
-  <% if @user.id == current_user.id %>
-  <%= link_to "Delete", destroy_image_path(:album_id => params[:id], :id => result['blob_id']), method: :delete %>
-  <%= link_to "Make Profile Photo", set_profile_photo_path(:id => result['id']), method: :post %>
-  <% end %>
-  <% i += 1 %>
-<% end %>
+        <!-- collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+     
+        <!-- links -->
+        <div class="collapse navbar-collapse order-2 flex-row-reverse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <%= link_to("Posts", posts_path, class: "nav-item nav-link") %> 
+            <%= link_to("My Profile", profile_index_path(:id => current_user.id), class: "nav-item nav-link") %> 
+            <%= link_to("Log out", session_path(:id => current_user.id), :method => :delete, class: "nav-item nav-link") %>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-<br><br>
-<% if @user.id == current_user.id %>
-<%= link_to 'Delete Album', destroy_album_path(:user_id => params[:user_id], :id => params[:id]), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %> <br>
-<%= link_to "Back to profile", profile_index_path(:id => params[:user_id]) %>
+    <div class="container pt-4 custom-width">
+      <!-- Additional Whitespace -->
+      <div class="col-md-12" style="height:60px;"></div>
+
+      <!-- Notice -->
+      <p id="notice" class="text-success text-center"><%= notice %></p>
+
+      <p class="mb-0"><%= link_to "← Back to #{@user.firstname}'s profile", profile_index_path(:id => params[:user_id]) %></p>
+      <!-- Delete Album -->
+      <% if @user.id == current_user.id %>
+        <p class="mb-0"><%= link_to 'Delete Album', destroy_album_path(:user_id => params[:user_id], :id => params[:id]), method: :delete, class: "text-secondary",data: { confirm: 'Are you sure?' } %></p>
+      <% end %>
+
+      <!-- Album Title -->
+      <h2 class="my-3"> <%= @album.title %> </h2>
+
+      <div class="row">
+        <% i = 0 %>
+        <% @results.each do |result| %>
+          <div class="col-md-4">
+            <!-- Display a thumbnail -->
+            <div class="card mb-3">
+              <%= image_tag(@album.thumbnail(i), class: "card-img-top") %>
+              <div class="card-body">
+                <% if @user.id == current_user.id %> 
+                  <!-- Delete/Make Profile Photo -->                
+                  <%= link_to "Make Profile Photo", set_profile_photo_path(:id => result['id']), method: :post, class: "text-primary" %>
+                  <%= link_to "Delete", destroy_image_path(:album_id => params[:id], :id => result['blob_id']), method: :delete, class: "text-secondary", style:"float: right"%>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <% i += 1 %>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>

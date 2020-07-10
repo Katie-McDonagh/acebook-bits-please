@@ -1,45 +1,45 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/helpers/album_helper.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/helpers/album_helper.rb": [
         1,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/helpers/albums_helper.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/helpers/albums_helper.rb": [
         1,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/helpers/application_helper.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/helpers/application_helper.rb": [
         null,
         null,
         1,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/helpers/comments_helper.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/helpers/comments_helper.rb": [
         1,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/helpers/images_helper.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/helpers/images_helper.rb": [
         1,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/helpers/profile_helper.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/helpers/profile_helper.rb": [
         1,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/helpers/sessions_helper.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/helpers/sessions_helper.rb": [
         1,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/helpers/users_helper.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/helpers/users_helper.rb": [
         1,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/helpers/welcome_helper.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/helpers/welcome_helper.rb": [
         1,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/controllers/albums_controller.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/controllers/albums_controller.rb": [
         1,
         1,
         null,
@@ -112,57 +112,111 @@
         null,
         null,
         1,
-        0,
-        null,
-        null
-      ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/controllers/application_controller.rb": [
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        366,
-        366,
-        null,
-        0,
-        null,
-        null,
-        null,
-        1,
-        null,
-        1,
-        89,
-        0,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/controllers/images_controller.rb": [
-        1,
-        1,
-        0,
-        0,
         0,
         null,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/controllers/sessions_controller.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/controllers/application_controller.rb": [
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        444,
+        443,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        107,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/controllers/images_controller.rb": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null
+      ],
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/controllers/posts_controller.rb": [
+        1,
+        1,
+        0,
+        null,
+        null,
+        1,
+        19,
+        null,
+        19,
+        18,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        66,
+        66,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
         1,
         1,
         1,
         null,
         null,
         1,
-        24,
+        1,
+        1,
+        1,
         null,
-        24,
-        22,
-        22,
+        null,
+        1,
+        null,
+        1,
+        19,
+        null,
+        null,
+        null
+      ],
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/controllers/sessions_controller.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        33,
+        null,
+        33,
+        31,
+        31,
         null,
         null,
         2,
@@ -172,12 +226,12 @@
         null,
         null,
         1,
-        4,
-        4,
+        7,
+        7,
         null,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/controllers/users_controller.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/controllers/users_controller.rb": [
         1,
         1,
         1,
@@ -195,7 +249,7 @@
         null,
         null,
         1,
-        33,
+        45,
         null,
         null,
         null,
@@ -205,11 +259,11 @@
         null,
         null,
         1,
-        32,
+        41,
         null,
-        32,
-        32,
-        50,
+        41,
+        41,
+        68,
         null,
         null,
         14,
@@ -250,140 +304,98 @@
         null,
         null,
         1,
-        32,
+        41,
         null,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/controllers/welcome_controller.rb": [
-        1,
-        1,
-        1,
-        null,
-        null
-      ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/models/album.rb": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        0,
-        null,
-        null,
-        1,
-        null,
-        1,
-        0,
-        0,
-        null,
-        null,
-        0,
-        0,
-        0,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/models/application_record.rb": [
-        null,
-        null,
-        1,
-        1,
-        null
-      ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/models/post.rb": [
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        1,
-        31,
-        null,
-        null,
-        null
-      ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/models/user.rb": [
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/controllers/welcome_controller.rb": [
         1,
         1,
         1,
         null,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/controllers/posts_controller.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/models/album.rb": [
         1,
+        1,
+        1,
+        1,
+        1,
+        null,
         1,
         0,
         null,
         null,
         1,
-        16,
-        null,
-        16,
-        15,
         null,
         1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        54,
-        54,
-        null,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
+        0,
         0,
         null,
         null,
-        null,
-        1,
-        1,
-        1,
-        1,
+        0,
+        0,
+        0,
         null,
         null,
-        1,
-        null,
-        1,
-        16,
         null,
         null,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/models/comment.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/models/application_record.rb": [
+        null,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/models/post.rb": [
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        33,
+        null,
+        null,
+        null
+      ],
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/models/user.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/controllers/profile_controller.rb": [
+        1,
+        null,
+        1,
+        2,
+        2,
+        2,
+        2,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null
+      ],
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/models/comment.rb": [
         1,
         1,
         1,
@@ -395,7 +407,7 @@
         null,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/controllers/comments_controller.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/controllers/comments_controller.rb": [
         1,
         null,
         1,
@@ -426,7 +438,7 @@
         null,
         null
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/mailers/application_mailer.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/mailers/application_mailer.rb": [
         0,
         0,
         0,
@@ -434,22 +446,13 @@
         0,
         0
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/jobs/application_job.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/jobs/application_job.rb": [
         0,
         0,
         0,
         0
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/controllers/profile_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/channels/application_cable/connection.rb": [
         0,
         0,
         0,
@@ -457,15 +460,7 @@
         0,
         0
       ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/channels/application_cable/connection.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "/Users/alastairsumner/Projects/acebook-rails-template/app/channels/application_cable/channel.rb": [
+      "/Users/student/Desktop/Makers/acebook-bits-please(old)/app/channels/application_cable/channel.rb": [
         0,
         0,
         0,
@@ -474,6 +469,8 @@
         0
       ]
     },
-    "timestamp": 1594388850
+
+    "timestamp": 1594381013
+
   }
 }
